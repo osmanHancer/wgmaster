@@ -1,0 +1,139 @@
+version: '3.9'
+services:
+
+  wgclient1:
+    build:
+      context: ../wgclient
+      dockerfile: alpine.Dockerfile
+    container_name: wgclient1
+    hostname: wgclient1
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ../wgclient:/wg
+    environment:
+      - WGPassw=dZLnfdfxPdffhvfOSdfs3gYqogBGs
+    ports:
+      - '2323:2323'
+  wgclient2:
+    build:
+      context: ../wgclient
+      dockerfile: alpine.Dockerfile
+    container_name: wgclient2
+    hostname: wgclient2
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ../wgclient:/wg
+    environment:
+      - WGPassw=dZLnfdfxPdffhvfOSdfs3gYqogBGs
+  wgclient3:
+    build:
+      context: ../wgclient
+      dockerfile: alpine.Dockerfile
+    container_name: wgclient3
+    hostname: wgclient3
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ../wgclient:/wg
+    environment:
+      - WGPassw=dZLnfdfxPdffhvfOSdfs3gYqogBGs
+  # wgclient4:
+  #   build:
+  #     context: ../wgclient
+  #     dockerfile: alpine.Dockerfile
+  #   container_name: wgclient4
+  #   hostname: wgclient4
+  #   privileged: true
+  #   cap_add:
+  #     - NET_ADMIN
+  #   volumes:
+  #     - ../wgclient:/wg
+  #   environment:
+  #     - WGPassw=dZLnfdfxPdffhvfOSdfs3gYqogBGs
+  # wgclient5:
+  #   build:
+  #     context: ../wgclient
+  #     dockerfile: alpine.Dockerfile
+  #   container_name: wgclient5
+  #   hostname: wgclient5
+  #   privileged: true
+  #   cap_add:
+  #     - NET_ADMIN
+  #   volumes:
+  #     - ../wgclient:/wg
+  #   environment:
+  #     - WGPassw=dZLnfdfxPdffhvfOSdfs3gYqogBGs
+  # wgclient6:
+  #   build:
+  #     context: ../wgclient
+  #     dockerfile: alpine.Dockerfile
+  #   container_name: wgclient6
+  #   hostname: wgclient6
+  #   privileged: true
+  #   cap_add:
+  #     - NET_ADMIN
+  #   volumes:
+  #     - ../wgclient:/wg
+  #   environment:
+  #     - WGPassw=dZLnfdfxPdffhvfOSdfs3gYqogBGs
+  # wgclient7:
+  #   build:
+  #     context: ../wgclient
+  #     dockerfile: alpine.Dockerfile
+  #   container_name: wgclient7
+  #   hostname: wgclient7
+  #   privileged: true
+  #   cap_add:
+  #     - NET_ADMIN
+  #   volumes:
+  #     - ../wgclient:/wg
+  #   environment:
+  #     - WGPassw=dZLnfdfxPdffhvfOSdfs3gYqogBGs
+  # wgclient8:
+  #   build:
+  #     context: ../wgclient
+  #     dockerfile: alpine.Dockerfile
+  #   container_name: wgclient8
+  #   hostname: wgclient8
+  #   privileged: true
+  #   cap_add:
+  #     - NET_ADMIN
+  #   volumes:
+  #     - ../wgclient:/wg
+  #   environment:
+  #     - WGPassw=dZLnfdfxPdffhvfOSdfs3gYqogBGs
+  # wgclient9:
+  #   build:
+  #     context: ../wgclient
+  #     dockerfile: alpine.Dockerfile
+  #   container_name: wgclient9
+  #   hostname: wgclient9
+  #   privileged: true
+  #   cap_add:
+  #     - NET_ADMIN
+  #   volumes:
+  #     - ../wgclient:/wg
+  #   environment:
+  #     - WGPassw=dZLnfdfxPdffhvfOSdfs3gYqogBGs
+  # wgclient10:
+  #   build:
+  #     context: ../wgclient
+  #     dockerfile: alpine.Dockerfile
+  #   container_name: wgclient10
+  #   hostname: wgclient10
+  #   privileged: true
+  #   cap_add:
+  #     - NET_ADMIN
+  #   volumes:
+  #     - ../wgclient:/wg
+  #   environment:
+  #     - WGPassw=dZLnfdfxPdffhvfOSdfs3gYqogBGs
+
+            
+
+

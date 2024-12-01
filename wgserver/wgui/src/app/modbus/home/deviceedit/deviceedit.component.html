@@ -1,0 +1,221 @@
+<div class="header-title">
+  <label> Device Edit</label>
+</div>
+<div style="width: 1420px; margin-left: 60px">
+  <div style="display: flex; flex-direction: row; width: auto">
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>Device ID</mat-label>
+      <input required matInput placeholder="id" [(ngModel)]="editItem.id" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex; flex-direction: row; width: auto">
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>host</mat-label>
+      <input matInput placeholder="host" [(ngModel)]="editItem.host" />
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>port</mat-label>
+      <input matInput placeholder="port" [(ngModel)]="editItem.port" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex; flex-direction: row; width: auto">
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>host2</mat-label>
+      <input matInput placeholder="host2" [(ngModel)]="editItem.host2" />
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>port2</mat-label>
+      <input matInput placeholder="port2" [(ngModel)]="editItem.port2" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex; flex-direction: row; width: auto">
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>slaveid</mat-label>
+      <input matInput placeholder="slaveid" [(ngModel)]="editItem.slaveid" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex; flex-direction: row; width: auto">
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>wordBlock</mat-label>
+      <input
+        matInput
+        placeholder="wordBlock"
+        [(ngModel)]="editItem.wordBlock"
+      />
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>wordBlockMax</mat-label>
+      <input
+        matInput
+        placeholder="wordBlockMAx"
+        [(ngModel)]="editItem.wordBlockMAx"
+      />
+    </mat-form-field>
+  </div>
+  <div style="display: flex; flex-direction: row; width: auto">
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>bitBlock</mat-label>
+      <input matInput placeholder="bitBlock" [(ngModel)]="editItem.bitBlock" />
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>bitBlockMax</mat-label>
+      <input
+        matInput
+        placeholder="bitBlockMax"
+        [(ngModel)]="editItem.bitBlockMax"
+      />
+    </mat-form-field>
+  </div>
+  <div style="display: flex; flex-direction: row; width: auto">
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>scanPeriod</mat-label>
+      <input
+        matInput
+        placeholder="scanPeriod"
+        [(ngModel)]="editItem.scanPeriod"
+      />
+    </mat-form-field>
+  </div>
+  <div style="margin: 15px">
+    <mat-form-field appearance="fill">
+      <mat-label>Pool</mat-label>
+      <mat-select [(ngModel)]="editItem.pool_id" name="pool">
+        <mat-option *ngFor="let pool of pools" [value]="pool.id">
+          {{ pool.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div style="display: flex; flex-direction: row; width: auto">
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>connectTimeout</mat-label>
+      <input
+        matInput
+        placeholder="connectTimeout"
+        [(ngModel)]="editItem.connectTimeout"
+      />
+    </mat-form-field>
+
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>requestTimeout</mat-label>
+      <input
+        matInput
+        placeholder="requestTimeout"
+        [(ngModel)]="editItem.requestTimeout"
+      />
+    </mat-form-field>
+  </div>
+  <div style="display: flex; flex-direction: row; width: auto">
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>svcid</mat-label>
+      <input matInput placeholder="info" [(ngModel)]="editItem.svcid" />
+    </mat-form-field>
+  </div>
+  <div style="display: flex; flex-direction: row; width: auto">
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>state</mat-label>
+      <mat-select [(ngModel)]="editItem.state" name="state">
+        <mat-option value="100">Aktif</mat-option>
+        <mat-option value="0">Pasif</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>type</mat-label>
+      <mat-select [(ngModel)]="editItem.type" name="type">
+        <mat-option value="1">Normal</mat-option>
+        <mat-option value="2">Input Mode</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
+  <div style="display: flex; flex-direction: row; width: auto">
+    <mat-form-field
+      appearance="fill"
+      style="width: -webkit-fill-available; margin: 15px"
+    >
+      <mat-label>info</mat-label>
+      <input matInput placeholder="info" [(ngModel)]="editItem.info" />
+    </mat-form-field>
+  </div>
+
+  <div style="display: flex; flex-direction: row-reverse; width: auto">
+    <button
+      mat-button
+      style="background-color: rgb(124, 45, 74); margin-left: 10px"
+      color="coral"
+      routerLink="../../"
+    >
+      İptal<mat-icon>cancel</mat-icon>
+    </button>
+    <button
+      *ngIf="isButtonVisible"
+      mat-button
+      style="background-color: rgb(124, 45, 74); margin-left: 10px"
+      color="coral"
+      routerLink="../../"
+      (click)="submitForm('delete')"
+    >
+      Sil<mat-icon>delete</mat-icon>
+    </button>
+    <button
+      mat-button
+      style="background-color: rgb(124, 45, 74); margin-left: 10px"
+      color="coral"
+      routerLink="../../"
+      (click)="submitForm('update')"
+    >
+      Kaydet<mat-icon>add</mat-icon>
+    </button>
+  </div>
+</div>

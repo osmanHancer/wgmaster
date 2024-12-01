@@ -1,0 +1,129 @@
+<div class="header-title">
+  <label> Devices </label>
+</div>
+<div style="width: 100%; overflow-x: auto;margin-top: 30px;">
+  <mat-form-field appearance="fill" style="width: 250px">
+    <input
+      [(ngModel)]="str"
+      matInput
+      placeholder="Search"
+      (ngModelChange)="valuechange(str)"
+    />
+  </mat-form-field>
+  <mat-table [dataSource]="dataSource" style="min-width: 800px" matSort>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> id</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="host">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        host
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.host }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="port">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        port
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.port }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="pool_id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        pool_id
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.pool_id }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="pool_name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        pool_name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        state
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.state }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="info">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        info
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.info }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>
+        <button
+          mat-mini-fab
+          routerLink="./deviceedit/-1"
+          style="background-color: rgb(117, 107, 93); color: coral"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+        <button
+          mat-mini-fab
+          (click)="exportData()"
+          style="
+            background-color: rgb(117, 107, 93);
+            color: coral;
+            margin-left: 50px;
+          "
+        >
+          <mat-icon>arrow_circle_up</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index">
+        <button
+          mat-mini-fab
+          routerLink="./deviceedit/{{ row.id }}"
+          style="background-color: rgb(117, 107, 93); color: coral"
+          button
+        >
+          <mat-icon>edit</mat-icon></button
+        ><button
+          mat-mini-fab
+          routerLink="./devicetags/{{row.id}}"
+          style="
+            margin-left: 50px;
+            background-color: rgb(117, 107, 93);
+            color: coral;
+          "
+          button
+        >
+          <mat-icon>list</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="[
+        'id',
+        'host',
+        'port',
+        'pool_id',
+        'pool_name',
+        'state',
+        'info',
+        'action'
+      ]"
+    ></mat-header-row>
+    <mat-row
+      *matRowDef="
+        let row;
+        columns: [
+          'id',
+          'host',
+          'port',
+          'pool_id',
+          'pool_name',
+          'state',
+          'info',
+          'action'
+        ]
+      "
+    ></mat-row>
+  </mat-table>
+</div>

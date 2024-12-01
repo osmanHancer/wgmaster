@@ -1,0 +1,107 @@
+<div class="header-title">
+  <label>
+    Logs
+  </label>
+</div>
+<div style="width: 100%; overflow-x: auto;margin-top: 30px;display: flex; flex-direction: row">
+<mat-form-field appearance="fill" style="width: 250px">
+  <input
+    [(ngModel)]="str"
+    matInput
+    placeholder="Search"
+    (ngModelChange)="valuechange(str)"
+  />
+</mat-form-field>
+<form [formGroup]="filterForm" style="display: flex; flex-direction: row;margin-left: 15px;">
+  <div>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="fromDate"
+        placeholder="From Date"
+        formControlName="fromDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+      <mat-datepicker #fromDate></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div style="margin-left: 10px">
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="toDate"
+        placeholder="To Date"
+        formControlName="toDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+      <mat-datepicker #toDate></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <button
+    style="margin-left: 10px; margin-top: 10px; width: 110px"
+    (click)="getDatesql(filterForm.value)"
+    mat-raised-button
+    color="warn"
+  >
+    Ara
+  </button>
+</form>
+</div>
+<div style="width: 100%; overflow-x: auto;margin-top: 30px;">
+  <mat-table [dataSource]="dataSource" style="min-width: 800px" matSort>
+    <ng-container matColumnDef="Itable">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        ltable
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.ltable }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        action
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.action }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> id </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="uid">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> uid </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.uid }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="data">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        data
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.data }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="time">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        time
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.time }} </mat-cell>
+    </ng-container>
+
+
+    <mat-header-row
+      *matHeaderRowDef="[
+        'Itable',
+        'action',
+        'id',
+        'uid',
+        'data',
+        'time'
+
+      ]"
+    ></mat-header-row>
+    <mat-row
+      *matRowDef="
+        let row;
+        columns: ['Itable', 'action', 'id', 'uid', 'data', 'time']
+      "
+    ></mat-row>
+  </mat-table>
+</div>

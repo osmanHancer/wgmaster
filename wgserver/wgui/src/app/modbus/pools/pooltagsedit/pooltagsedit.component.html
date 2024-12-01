@@ -1,0 +1,105 @@
+<div class="header-title">
+  <label> Pool tag edits </label>
+</div>
+<div style="display: flex; flex-direction: row; align-items: flex-start">
+  <mat-form-field appearance="fill" style="width: 220px; margin: 30px">
+    <mat-label>did</mat-label>
+    <input readonly matInput placeholder="id" [(ngModel)]="editItem.did" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 220px; margin: 30px">
+    <mat-label>name</mat-label>
+    <input matInput placeholder="name" [(ngModel)]="editItem.name" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 220px; margin: 30px">
+    <mat-label>addr</mat-label>
+    <input
+      type="number"
+      matInput
+      placeholder="version"
+      [(ngModel)]="editItem.addr"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="width: 220px; margin: 30px">
+    <mat-label>dataType</mat-label>
+    <mat-select [(ngModel)]="editItem.dataType" name="dataType">
+      <mat-option *ngFor="let dataType of dataTypes" [value]="dataType">
+        {{ dataType.id }}-{{ dataType.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="width: 220px; margin: 30px">
+    <mat-label>factor</mat-label>
+    <input
+      type="number"
+      matInput
+      placeholder="factor"
+      [(ngModel)]="editItem.factor"
+    />
+  </mat-form-field>
+</div>
+<div style="width: max-content">
+  <div style="margin-left: 30px">
+    Örnek:<label style="font-size: 15px; cursor: pointer" for=""
+      >([tag1]+[tag2])*3.14</label
+    >
+  </div>
+  <mat-form-field appearance="fill" style="margin: 30px; width: 1340px">
+    <mat-label>func</mat-label>
+    <input matInput placeholder="func" [(ngModel)]="editItem.func" />
+  </mat-form-field>
+</div>
+<div style="display: flex; flex-direction: row; align-items: flex-start">
+  <mat-form-field appearance="fill" style="width: 405px; margin: 30px">
+    <mat-label>scanRate</mat-label>
+    <input
+      type="number"
+      matInput
+      placeholder="scanRate"
+      [(ngModel)]="editItem.scanRate"
+    />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 405px; margin: 30px">
+    <mat-label>state</mat-label>
+    <mat-select [(ngModel)]="selected" name="state">
+      <mat-option value="0"> Pasif</mat-option>
+      <mat-option value="10"> Aktif</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 410px; margin: 30px">
+    <mat-label>info</mat-label>
+    <input matInput placeholder="info" [(ngModel)]="editItem.info" />
+  </mat-form-field>
+</div>
+<div style="display: flex; flex-direction: row; margin-left: 1185px">
+  <button
+    mat-button
+    style="background-color: rgb(124, 45, 74); margin-left: 10px"
+    color="coral"
+    routerLink="../../../../pooltags/{{ editItem.did }}"
+    (click)="submitForm('update')"
+  >
+    Kaydet<mat-icon>add</mat-icon>
+  </button>
+  <button
+    *ngIf="isButtonVisible"
+    mat-button
+    style="background-color: rgb(124, 45, 74); margin-left: 10px"
+    color="coral"
+    routerLink="../../../../pooltags/{{ editItem.did }}"
+    (click)="submitForm('delete')"
+  >
+    Sil<mat-icon>delete</mat-icon>
+  </button>
+  <button
+    mat-button
+    style="background-color: rgb(124, 45, 74); margin-left: 10px"
+    color="coral"
+    routerLink="../../../../pooltags/{{ editItem.did }}"
+  >
+    İptal<mat-icon>cancel</mat-icon>
+  </button>
+</div>

@@ -1,0 +1,63 @@
+<div class="header-title">
+  <label>
+    Pool edit
+  </label>
+</div>
+<div style="display: flex; flex-direction: row; align-items: flex-start">
+  <mat-form-field appearance="fill" style="width: 250px; margin: 30px">
+    <mat-label>id</mat-label>
+    <input matInput placeholder="id"  [(ngModel)]="editItem.id"/>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 250px; margin: 30px">
+    <mat-label>name</mat-label>
+    <input matInput placeholder="name" [(ngModel)]="editItem.name"/>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 250px; margin: 30px">
+    <mat-label>version</mat-label>
+    <input matInput placeholder="version"  [(ngModel)]="editItem.version"/>
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="width: 250px; margin: 30px">
+    <mat-label>refPool</mat-label>
+    <input
+      type="number"
+      matInput
+      placeholder="refPool"
+      [(ngModel)]="editItem.refPool"
+    />
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="width: 250px; margin: 30px">
+    <mat-label>description</mat-label>
+    <input matInput placeholder="description" [(ngModel)]="editItem.description"/>
+  </mat-form-field>
+</div>
+<div style="display: flex; flex-direction: row; margin-left: 1230px">
+  <button
+    mat-button
+    style="background-color: rgb(124, 45, 74); margin-left: 10px"
+    color="coral"
+    routerLink="../../"
+    (click)="submitForm('update')"
+  >
+    Kaydet<mat-icon>add</mat-icon>
+  </button>
+  <button
+  *ngIf="isButtonVisible"
+    mat-button
+    style="background-color: rgb(124, 45, 74); margin-left: 10px"
+    color="coral"
+    routerLink="../../"
+    (click)="submitForm('delete')"
+  >
+    Sil<mat-icon>delete</mat-icon>
+  </button>
+  <button
+    mat-button
+    style="background-color: rgb(124, 45, 74); margin-left: 10px"
+    color="coral"
+    routerLink="../../"
+  >
+    İptal<mat-icon>cancel</mat-icon>
+  </button>
+</div>

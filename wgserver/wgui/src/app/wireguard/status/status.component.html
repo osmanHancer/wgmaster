@@ -1,0 +1,160 @@
+<mat-spinner
+  style="left: 47vw; position: fixed; z-index: 999"
+  *ngIf="progress <= 1"
+  mode="indeterminate"
+></mat-spinner>
+<div
+  *ngIf="progress > 0"
+  style="display: flex; flex-direction: row; width: 100%; overflow-x: auto"
+>
+  <div style="display: flex; flex-direction: row; min-width: 700px">
+    <div style="">
+      <table style="width: 550px" mymattable>
+        <tr>
+          <td>cName</td>
+          <td>{{ client.cName }}</td>
+        </tr>
+        <tr>
+          <td>ipaddr</td>
+          <td>{{ client.ipaddr }}</td>
+        </tr>
+        <tr>
+          <td>Login Time</td>
+          <td>{{ client.loginTime }}</td>
+        </tr>
+        <tr>
+          <td>Last Login / Geçen Saat</td>
+          <td>{{ client.lastTime }} / {{ this.client.diffHour}}</td>
+        </tr>
+        <tr>
+          <td>Public key</td>
+          <td>
+            {{ client.pubKey }}
+            <button
+              (click)="delpubk()"
+              mat-raised-button
+              color="primary"
+              style="margin: 5px"
+            >
+              delete pubKey
+              <mat-icon>delete</mat-icon>
+            </button>
+          </td>
+        </tr>
+        <tr>
+          <td>Endpoint</td>
+          <td>{{ client.endpoint }}</td>
+        </tr>
+        <tr>
+          <td>Status</td>
+          <td *ngIf="pingstatus" style="background-color: rgb(131, 207, 15)">
+            <p style="margin: 7px 175px 12px">Connetc</p>
+          </td>
+          <td *ngIf="!pingstatus" style="background-color: rgb(255, 0, 0)">
+            <p style="margin: 7px 175px 12px">Disconnect</p>
+          </td>
+        </tr>
+        <tr>
+          <td>Tx/Rx</td>
+          <td>{{ client.rx }}  MB/ {{ client.tx }} MB</td>
+        </tr>
+        <tr>
+          <td>Toplam/Saatlik</td>
+          <td>{{ client.TxRxTotal }} MB/{{ client.avgUsage}}</td>
+        </tr>
+      </table>
+    </div>
+
+    <div style="display: flex; flex-direction: column">
+      <button
+        (click)="refresh()"
+        mat-raised-button
+        color="primary"
+        style="margin: 5px"
+      >
+        refresh
+        <mat-icon>refresh</mat-icon>
+      </button>
+      <textarea style="background-color: #504f4f; width: 900px" rows="25">{{
+        wglog
+      }}</textarea>
+    </div>
+  </div>
+</div>
+
+<div
+  *ngIf="progress > 0"
+  style="margin-top: 5px; width: 100%; overflow-x: auto"
+>
+<mat-table [dataSource]="dataSource" matSort >
+  <ng-container matColumnDef="modemFK">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      modemFK</mat-header-cell
+    >
+    <mat-cell *matCellDef="let row"> {{ row.modemFK }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> cName </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.cName }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      action
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.action }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="msg">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> msg </mat-header-cell>
+    <mat-cell *matCellDef="let row; let i = index"> {{ row.msg }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="remoteAddr">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      remoteAddr
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row; let i = index">
+      {{ row.remoteAddr }}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="time">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> time </mat-header-cell>
+    <mat-cell *matCellDef="let row; let i = index"> {{ row.time }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="createdTime">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      createdTime
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row; let i = index">
+      {{ row.createdTime }}
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row
+    *matHeaderRowDef="[
+      'modemFK',
+      'cName',
+      'action',
+      'msg',
+      'remoteAddr',
+      'time',
+      'createdTime'
+    ]"
+  ></mat-header-row>
+  <mat-row
+    *matRowDef="
+      let row;
+      columns: [
+        'modemFK',
+        'cName',
+        'action',
+        'msg',
+        'remoteAddr',
+        'time',
+        'createdTime'
+      ]
+    "
+  ></mat-row>
+</mat-table>
+</div>

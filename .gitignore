@@ -1,0 +1,3 @@
+*.key
+*wg0.conf
+*package-lock.json

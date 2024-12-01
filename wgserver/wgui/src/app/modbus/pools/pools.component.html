@@ -1,0 +1,99 @@
+<div class="header-title">
+  <label>
+    pools
+  </label>
+</div>
+<div style="width: 100%; overflow-x: auto;margin-top: 30px;">
+<mat-form-field appearance="fill" style="width: 250px">
+  <input
+    [(ngModel)]="str"
+    matInput
+    placeholder="Search"
+    (ngModelChange)="valuechange(str)"
+  />
+</mat-form-field>
+
+  <mat-table [dataSource]="dataSource" style="min-width: 800px" matSort>
+    <ng-container matColumnDef="id">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> id</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.id }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="version">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        version
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.version }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="refPool">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        refPool
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.refPool }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="description">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        description
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.description }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>
+        <button
+          mat-mini-fab
+          routerLink="../pools/poolsedit/-1"
+          style="background-color: rgb(117, 107, 93); color: coral"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index">
+        <button
+          mat-mini-fab
+          routerLink="../pools/poolsedit/{{row.id}}"
+          style="background-color: rgb(117, 107, 93); color: coral"
+          button
+        >
+          <mat-icon>edit</mat-icon></button
+        ><button
+          mat-mini-fab
+          routerLink="../pools/pooltags/{{row.id}}"
+          style="
+            margin-left: 50px;
+            background-color: rgb(117, 107, 93);
+            color: coral;
+          "
+          button
+        >
+          <mat-icon>list</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="[
+        'id',
+        'name',
+        'version',
+        'refPool',
+        'description',
+        'action'
+      ]"
+    ></mat-header-row>
+    <mat-row
+      *matRowDef="
+        let row;
+        columns: ['id', 'name', 'version', 'refPool', 'description', 'action']
+      "
+    ></mat-row>
+  </mat-table>
+</div>

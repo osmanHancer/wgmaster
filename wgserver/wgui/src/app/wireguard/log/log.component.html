@@ -1,0 +1,127 @@
+<form [formGroup]="filterForm" style="display: flex; flex-direction: row">
+  <div>
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="fromDate"
+        placeholder="From Date"
+        formControlName="fromDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="fromDate"></mat-datepicker-toggle>
+      <mat-datepicker #fromDate></mat-datepicker>
+    </mat-form-field>
+  </div>
+  <div style="margin-left: 10px">
+    <mat-form-field>
+      <input
+        matInput
+        [matDatepicker]="toDate"
+        placeholder="To Date"
+        formControlName="toDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="toDate"></mat-datepicker-toggle>
+      <mat-datepicker #toDate></mat-datepicker>
+    </mat-form-field>
+  </div>
+
+  <button
+    style="margin-left: 10px; margin-top: 10px; width: 110px"
+    (click)="getDatesql(filterForm.value)"
+    mat-raised-button
+    color="warn"
+  >
+    Ara
+  </button>
+  <button
+    (click)="ngOnInit()"
+    mat-mini-fab
+    style="
+      margin-left: 700px;
+      background-color: rgb(117, 107, 93);
+      color: coral;
+    "
+  >
+    <mat-icon>refresh</mat-icon>
+  </button>
+</form>
+
+<mat-form-field appearance="fill" style="height: 77px">
+  <input
+    [(ngModel)]="str"
+    matInput
+    placeholder="Search"
+    (ngModelChange)="filtervaluechange(str)"
+  />
+</mat-form-field>
+
+<mat-table [dataSource]="dataSource" matSort>
+  <ng-container matColumnDef="modemFK">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      modemFK</mat-header-cell
+    >
+    <mat-cell *matCellDef="let row"> {{ row.modemFK }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="cName">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> cName </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.cName }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="action">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      action
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row"> {{ row.action }} </mat-cell>
+  </ng-container>
+
+  <ng-container matColumnDef="msg">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> msg </mat-header-cell>
+    <mat-cell *matCellDef="let row; let i = index"> {{ row.msg }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="remoteAddr">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      remoteAddr
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row; let i = index">
+      {{ row.remoteAddr }}
+    </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="time">
+    <mat-header-cell *matHeaderCellDef mat-sort-header> time </mat-header-cell>
+    <mat-cell *matCellDef="let row; let i = index"> {{ row.time }} </mat-cell>
+  </ng-container>
+  <ng-container matColumnDef="createdTime">
+    <mat-header-cell *matHeaderCellDef mat-sort-header>
+      createdTime
+    </mat-header-cell>
+    <mat-cell *matCellDef="let row; let i = index">
+      {{ row.createdTime }}
+    </mat-cell>
+  </ng-container>
+
+  <mat-header-row
+    *matHeaderRowDef="[
+      'modemFK',
+      'cName',
+      'action',
+      'msg',
+      'remoteAddr',
+      'time',
+      'createdTime'
+    ]"
+  ></mat-header-row>
+  <mat-row
+    *matRowDef="
+      let row;
+      columns: [
+        'modemFK',
+        'cName',
+        'action',
+        'msg',
+        'remoteAddr',
+        'time',
+        'createdTime'
+      ]
+    "
+  ></mat-row>
+</mat-table>

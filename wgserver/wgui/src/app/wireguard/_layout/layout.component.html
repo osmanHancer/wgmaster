@@ -1,0 +1,51 @@
+<mat-toolbar
+  class="mat-elevation-z8"
+  style="display: flex; flex-direction: row"
+>
+  <button
+    mat-icon-button
+    (click)="leftDrawer.toggle()"
+    [ngClass]="leftDrawer.opened ? 'active-menu' : ''"
+  >
+    <mat-icon> menu </mat-icon>
+  </button>
+
+  <button mat-button routerLink="/wg/home" [ngClass]="setActiveMenu('/home')">
+    <mat-icon>home</mat-icon>
+    list
+  </button>
+  <button mat-button routerLink="/wg/log" [ngClass]="setActiveMenu('/log')">
+    <mat-icon>list_alt</mat-icon>
+    Logs
+  </button>
+
+
+</mat-toolbar>
+
+<mat-sidenav-container>
+
+
+  <mat-sidenav
+    #leftDrawer
+    class="mat-elevation-z8"
+    [opened]="innerWidth >= 1600 ? true : false"
+    [mode]="innerWidth >= 900 ? 'side' : 'over'"
+  >
+  <button mat-button routerLink="/wg" [ngClass]="setActiveMenu('/wg')">
+    <mat-icon>list_alt</mat-icon>
+    Wireguard
+  </button>
+
+  <button mat-button routerLink="/modbus" [ngClass]="setActiveMenu('/modbus')">
+    <mat-icon>list_alt</mat-icon>
+    Modbus
+  </button>
+  </mat-sidenav>
+
+
+  <mat-sidenav-content>
+    <div class="content mat-elevation-z8">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>

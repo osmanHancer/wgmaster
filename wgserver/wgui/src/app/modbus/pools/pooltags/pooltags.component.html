@@ -1,0 +1,128 @@
+<div class="header-title">
+  <label> Pool tags </label>
+</div>
+<div style="width: 100%; overflow-x: auto;margin-top: 30px;">
+  <mat-form-field appearance="fill" style="width: 250px">
+    <input
+      [(ngModel)]="str"
+      matInput
+      placeholder="Search"
+      (ngModelChange)="valuechange(str)"
+    />
+  </mat-form-field>
+
+  <mat-table [dataSource]="dataSource" style="min-width: 800px" matSort>
+    <ng-container matColumnDef="did">
+      <mat-header-cell *matHeaderCellDef mat-sort-header> did</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.did }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="name">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        name
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.name }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="addr">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        addr
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.addr }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="dataType">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        dataType
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.dataType }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="factor">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        factor
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.factor }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="scanRate">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        scanRate
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.scanRate }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="state">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        state
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.state }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="info">
+      <mat-header-cell *matHeaderCellDef mat-sort-header>
+        info
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.info }} </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>
+        <button
+          mat-mini-fab
+          routerLink="../pooltagsedit/{{id}}/-1"
+          style="background-color: rgb(117, 107, 93); color: coral"
+          button
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+        <button
+        mat-mini-fab
+        (click)="exportData()"
+        style="
+          background-color: rgb(117, 107, 93);
+          color: coral;
+          margin-left: 50px;
+        "
+      >
+        <mat-icon>arrow_circle_up</mat-icon>
+      </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index">
+        <button
+          mat-mini-fab
+          routerLink="../pooltagsedit/{{ row.name }}/{{row.did}}"
+          style="background-color: rgb(117, 107, 93); color: coral"
+          button
+        >
+          <mat-icon>edit</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="[
+        'did',
+        'name',
+        'addr',
+        'dataType',
+        'factor',
+        'scanRate',
+        'state',
+        'info',
+        'action'
+      ]"
+    ></mat-header-row>
+    <mat-row
+      *matRowDef="
+        let row;
+        columns: [
+          'did',
+          'name',
+          'addr',
+          'dataType',
+          'factor',
+          'scanRate',
+          'state',
+          'info',
+          'action'
+        ]
+      "
+    ></mat-row>
+  </mat-table>
+</div>

@@ -1,0 +1,145 @@
+<div style="display: flex; flex-direction: column; align-items: flex-start">
+  <mat-form-field *ngIf="hide" appearance="fill" style="width: 250px">
+    <mat-label>modemPK</mat-label>
+    <input matInput placeholder="modemPK" [(ngModel)]="editItem.modemPK" />
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" style="width: 250px">
+    <mat-label>cName</mat-label>
+    <input [(ngModel)]="editItem.cName" matInput placeholder="cName" />
+  </mat-form-field>
+  <div>
+    <mat-form-field appearance="fill" style="width: 250px">
+      <mat-label>passw</mat-label>
+      <input
+        matInput
+        placeholder="Password"
+        [(ngModel)]="editItem.passw"
+        [type]="!hide ? 'password' : 'text'"
+        required
+      />
+      <mat-icon matSuffix (click)="hide = !hide">{{
+        hide ? "visibility_off" : "visibility"
+      }}</mat-icon>
+    </mat-form-field>
+    <button
+      mat-button
+      style="background-color: rgb(124, 45, 74); margin-left: 10px"
+      color="coral"
+      (click)="Randpassw()"
+    >
+      <mat-icon>shuffle</mat-icon>
+      Rand
+    </button>
+  </div>
+<div>
+  <mat-form-field appearance="fill" style="width: 250px">
+    <mat-label>ipaddr</mat-label>
+    <input matInput placeholder="ipaddr" [(ngModel)]="editItem.ipaddr" />
+  </mat-form-field>
+  <button
+  mat-button
+  style="background-color: rgb(124, 45, 74); margin-left: 10px"
+  color="coral"
+  (click)="Randip()"
+>
+  <mat-icon>shuffle</mat-icon>
+  Rand
+</button>
+  </div>
+  <div style="display: flex; flex-direction: row">
+    <button
+      mat-button
+      color="coral"
+      routerLink="/wg/home"
+      (click)="submitForm('update')"
+      type="submit"
+      style="background-color: rgb(124, 45, 74)"
+    >
+      Kaydet
+      <mat-icon>save</mat-icon>
+    </button>
+    <button
+      mat-button
+      *ngIf="isButtonVisible"
+      style="background-color: rgb(124, 45, 74); margin-left: 10px"
+      color="coral"
+      routerLink="/wg/home"
+      (click)="submitForm('delete')"
+    >
+      Sil<mat-icon>delete</mat-icon>
+    </button>
+    <button
+      mat-button
+      style="background-color: rgb(124, 45, 74); margin-left: 10px"
+      color="coral"
+      routerLink="/wg/home"
+    >
+      İptal<mat-icon>cancel</mat-icon>
+    </button>
+  </div>
+</div>
+
+<div *ngIf="isButtonVisible" style="width: auto; margin-top: 20px">
+  <mat-tab-group
+    dynamicHeight
+    [(selectedIndex)]="selectedTabIndex"
+    (selectedTabChange)="onTabChanged($event)"
+  >
+    <mat-tab label="Modem">
+
+      <pre style="background-color: rgb(27, 77, 172)">
+        1- System sekmesine tıklayınız açılan bölümde Custom Script sekmesine giriniz
+        2- Açılansayfayı temizleyip modem bilgileri sayfasındaki modem sekmesinden kopyaladığınız konfigürasyonu safaya yapıştırınız.
+        3- Save & Apply butonuna basıp modeme reboot attırınız.
+             </pre
+      >
+      <button
+      mat-button
+      style="background-color: rgb(27, 77, 172); margin: 10px"
+      (click)="copyClipboad(modem_script)"
+    >
+      Copy <mat-icon>file_copy</mat-icon>
+    </button>
+      <pre style="background-color: #504f4f">
+      {{ modem_script }}
+    </pre
+      >
+    </mat-tab>
+    <mat-tab label="Linux">
+      <button
+        mat-button
+        style="background-color: rgb(27, 77, 172); margin-left: 10px"
+        (click)="copyClipboad(modem_script)"
+      >
+        Copy <mat-icon>file_copy</mat-icon>
+      </button>
+      <pre style="background-color: #504f4f">
+
+      {{ modem_script }}
+      </pre>
+    </mat-tab>
+    <mat-tab>
+      <pre style="background-color: rgb(27, 77, 172)">
+ 1- https://www.wireguard.com/install/ adresinden wireguard modülünü bilgisayarınıza kurunuz
+ 2- Kurulum bittikten sonra wireguard ı açınız crtl+n kombinasyonu yaparak yeni tünel oluştur ekranı karşınıza çıkacaktır
+    Açılan ekrandaki sayfayı temizleyip modem bilgileri sayfasındaki windows sekmesinden kopyaladığınız konfigürasyonu safaya yapıştırınız.
+    Kaydet et butonuna basınız ve daha sonra  etkileştir butonuna tıklayınız.
+      </pre>
+      <ng-template mat-tab-label>
+        <span style="width: max-content">Windows</span>
+      </ng-template>
+      <button
+        mat-button
+        style="background-color: rgb(27, 77, 172); margin-left: 10px"
+        (click)="copyClipboad(winconf)"
+      >
+        Copy <mat-icon>file_copy</mat-icon>
+      </button>
+      <pre style="background-color: #504f4f"
+        >{{ winconf }}
+     </pre
+      >
+    </mat-tab>
+  </mat-tab-group>
+</div>

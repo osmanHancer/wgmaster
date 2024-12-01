@@ -1,0 +1,76 @@
+version: '3.9'
+
+services:
+  wgserver:
+    build:
+      context: ./wgserver
+      dockerfile: alpine.Dockerfile
+    container_name: wgserver
+    hostname: wgserver
+    privileged: true
+    cap_add:
+      - NET_ADMIN
+      - SYS_MODULE
+    ports:
+      - '4200:4200' # angular
+      - '2323:2323' # php
+      - '41820:41820/udp' # wireguard
+    volumes:
+      - ./wgserver:/wg
+      - /lib/modules:/lib/modules
+    environment:
+        TZ: Europe/Istanbul
+
+
+  wgdb:
+    container_name: wgdb
+    hostname: wgdb
+    image: mysql
+    restart: always
+    environment:
+        MYSQL_ROOT_PASSWORD: toor
+        # MYSQL_DATABASE: dbapp
+        MYSQL_USER: dbapp
+        MYSQL_PASSWORD: toor
+        TZ: Europe/Istanbul
+    volumes: 
+        - ./db:/docker-entrypoint-initdb.d
+    ports:
+        - "9906:3306"
+          
+  # wgclient1:
+  #   build:
+  #     context: ./wgclient
+  #     dockerfile: alpine.Dockerfile
+  #   container_name: wgclient1
+  #   hostname: wgclient1
+  #   privileged: true
+  #   cap_add:
+  #     - NET_ADMIN
+  #   volumes:
+  #     - ./wgclient:/wg
+  #   depends_on:
+  #     - wgserver
+  #   environment:
+  #     - WGPassw=dZLnfdfxPdffhvfOSdfs3gYqogBGs
+
+
+  # wgclient2:
+  #   build:
+  #     context: ./wgclient
+  #     dockerfile: alpine.Dockerfile
+  #   container_name: wgclient2
+  #   hostname: wgclient2
+  #   privileged: true
+  #   cap_add:
+  #     - NET_ADMIN
+  #   volumes:
+  #     - ./wgclient:/wg
+  #   depends_on:
+  #     - wgserver
+  #   environment:
+  #     - WGPassw=dZLnfdfxPdffhvfOSdfs3gYqogBGs
+
+ 
+
+

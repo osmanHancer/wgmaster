@@ -1,0 +1,77 @@
+
+<mat-form-field appearance="fill" style="width: 250px">
+  <input
+    [(ngModel)]="str"
+    matInput
+    placeholder="Search"
+    (ngModelChange)="valuechange(str)"
+  />
+</mat-form-field>
+<div style="width: 100%; overflow-x: auto">
+  <mat-table [dataSource]="dataSource" style="min-width: 800px">
+    <ng-container matColumnDef="modemPK">
+      <mat-header-cell *matHeaderCellDef> modemPK</mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.modemPK }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="cName">
+      <mat-header-cell *matHeaderCellDef> cName </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.cName }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="createdTime">
+      <mat-header-cell *matHeaderCellDef> createdTime </mat-header-cell>
+      <mat-cell *matCellDef="let row"> {{ row.createdTime }} </mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="ipaddr">
+      <mat-header-cell *matHeaderCellDef> ipaddr </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index">
+        {{ row.ipaddr }}
+      </mat-cell>
+    </ng-container>
+    <ng-container matColumnDef="action">
+      <mat-header-cell *matHeaderCellDef>
+        <button
+          mat-mini-fab
+          routerLink="../edit/-1"
+
+          style="background-color: rgb(117, 107, 93); color: coral"
+        >
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let row; let i = index">
+        <button
+          mat-mini-fab
+          routerLink="../edit/{{ row.modemPK }}"
+          style="background-color: rgb(117, 107, 93); color: coral"
+          button
+        >
+          <mat-icon>edit</mat-icon></button
+        ><button
+          mat-mini-fab
+          routerLink="../status/{{ row.modemPK }}"
+          style="
+            margin-left: 50px;
+            background-color: rgb(117, 107, 93);
+            color: coral;
+          "
+          button
+        >
+          <mat-icon>visibility</mat-icon>
+        </button>
+      </mat-cell>
+    </ng-container>
+
+    <mat-header-row
+      *matHeaderRowDef="['modemPK', 'cName', 'createdTime', 'ipaddr', 'action']"
+    ></mat-header-row>
+    <mat-row
+      *matRowDef="
+        let row;
+        columns: ['modemPK', 'cName', 'createdTime', 'ipaddr', 'action']
+      "
+    ></mat-row>
+  </mat-table>
+</div>
